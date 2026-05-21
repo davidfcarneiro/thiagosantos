@@ -27,10 +27,17 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 3px;
 }
 
 body {
   margin: 0;
+  font-size: clamp(1rem, 0.22vw + 0.94rem, 1.08rem);
   font-family: "Manrope", sans-serif;
   color: var(--text);
   background:
@@ -121,6 +128,7 @@ summary {
 
 .hero {
   min-height: calc(100svh - 76px);
+  min-height: calc(100dvh - 76px);
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
   align-items: center;
@@ -168,13 +176,15 @@ h2 {
 
 h3 {
   margin: 0 0 12px;
-  font-size: 1.18rem;
+  font-size: clamp(1.12rem, 0.45vw + 1rem, 1.35rem);
+  line-height: 1.25;
 }
 
 p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.72;
+  text-wrap: pretty;
 }
 
 .hero-text {
@@ -202,6 +212,7 @@ p {
 
 .button {
   display: inline-flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   gap: 12px;
@@ -286,7 +297,7 @@ p {
 }
 
 .section {
-  padding: 84px 0;
+  padding: clamp(56px, 8vw, 84px) 0;
 }
 
 .section-heading {
@@ -601,6 +612,7 @@ p {
 
 @media (max-width: 860px) {
   .topbar {
+    flex-direction: column;
     align-items: center;
     gap: 12px;
     padding-top: 14px;
@@ -636,6 +648,10 @@ p {
 }
 
 @media (max-width: 640px) {
+  body {
+    font-size: 0.98rem;
+  }
+
   .page-shell {
     width: min(calc(100% - 20px), var(--container));
     padding-bottom: calc(24px + var(--safe-bottom));
@@ -653,6 +669,7 @@ p {
 
   .hero {
     min-height: calc(100svh - 56px);
+    min-height: calc(100dvh - 56px);
     grid-template-columns: minmax(0, 1.1fr) minmax(150px, 0.9fr);
     align-items: end;
     gap: 14px;
@@ -726,6 +743,7 @@ p {
 
   .button {
     width: 100%;
+    white-space: normal;
     min-height: 48px;
     padding-inline: 18px;
     font-size: 0.96rem;
@@ -744,6 +762,18 @@ p {
 }
 
 @media (max-width: 440px) {
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-copy strong {
+    font-size: 0.92rem;
+  }
+
+  .brand-copy span {
+    font-size: 0.78rem;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     align-items: start;
